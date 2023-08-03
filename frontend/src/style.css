@@ -1,16 +1,22 @@
-
+body{
+    background-color: #272744;
+}
+.pallet{
+    color: #272744;
+    color: #494d7e;
+    color: #8b6d9c;
+    color: #c69fa5;
+    color: #f2d3ab;
+    color: #fbf5ef;
+}
 .main-page{
     display: flex;
     flex-direction: column;
+    color: #f2d3ab;
 }
 .main-container{
     display: flex;
     justify-content: space-evenly;
-}
-.nav-bar{
-    border-style: solid;
-    border-color: black;
-    height: 5vh;
 }
 .side-box{
     border-style: solid;
@@ -21,7 +27,17 @@
     border-style: solid;
     border-color: black;
     width: 60%;
-    overflow-y: scroll;
     font-size: 200px;
     height: 92vh;
+}
+.profile-container{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+   
+}
+.profile-img{
+    height: 30px;
+    width: 30px;
+    padding: 5px;
 }

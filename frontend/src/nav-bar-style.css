@@ -1,0 +1,21 @@
+.nav-bar{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    height: 5vh;
+}
+.home-button{
+    background-color: transparent;
+    border-color: transparent;
+    color: #f2d3ab;
+    width: 20%;
+}
+.search-bar{
+    width: 60%;
+}
+.nav-bar-user{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 20%;
+}
