@@ -1,0 +1,27 @@
+
+.main-page{
+    display: flex;
+    flex-direction: column;
+}
+.main-container{
+    display: flex;
+    justify-content: space-evenly;
+}
+.nav-bar{
+    border-style: solid;
+    border-color: black;
+    height: 5vh;
+}
+.side-box{
+    border-style: solid;
+    border-color: black;
+    width: 20%;   
+}
+.main-box{
+    border-style: solid;
+    border-color: black;
+    width: 60%;
+    overflow-y: scroll;
+    font-size: 200px;
+    height: 92vh;
+}
