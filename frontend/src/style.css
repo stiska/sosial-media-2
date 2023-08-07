@@ -1,5 +1,8 @@
+:root {
+    --border-color: #ffffff; 
+}
 body{
-    background-color: #272744;
+    background-color: #000000;
 }
 .pallet{
     color: #272744;
@@ -12,7 +15,7 @@ body{
 .main-page{
     display: flex;
     flex-direction: column;
-    color: #f2d3ab;
+    color: #ffffff;
 }
 .main-container{
     display: flex;
@@ -20,12 +23,14 @@ body{
 }
 .side-box{
     border-style: solid;
-    border-color: black;
-    width: 20%;   
+    border-color: var(--border-color);
+    width: 20%; 
+    height: 92vh; 
+    overflow-y: scroll; 
 }
 .main-box{
     border-style: solid;
-    border-color: black;
+    border-color: var(--border-color);
     width: 60%;
     font-size: 200px;
     height: 92vh;

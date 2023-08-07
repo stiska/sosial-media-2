@@ -7,7 +7,7 @@ export default function MainPage() {
       <NavBar></NavBar>
       <div className="main-container">
         <div className="side-box">meny ting</div>
-        <div className="main-box">inlegg a a a a a a a</div>
+        <div className="main-box">inlegg</div>
         <FriendsList></FriendsList>
       </div>
     </div>
