@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 
 export default function Test() {
-  const [numbers, setNumbers] = useState([]);
+  const [numbers, setNumbers] = useState(null);
 
   /*
   useEffect(() => {

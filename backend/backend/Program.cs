@@ -1,4 +1,5 @@
-using Microsoft.AspNetCore.Mvc;
+
+using backend.models;
 
 var builder = WebApplication.CreateBuilder(args);
 var app = builder.Build();
@@ -10,7 +11,7 @@ var inmemoryDb = new List<int>
 
 app.MapGet("/api/test", () =>
 {
-    return inmemoryDb;
+    return new User("Stian","Skatvedt");
 });
 
 app.Run();
