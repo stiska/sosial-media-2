@@ -8,7 +8,6 @@ export default function FriendsList() {
     const getFriends = async () => {
       try {
         const response = await axios.get("/api/FriendsList");
-        console.log(response.data);
         setFriends(response.data);
       } catch (error) {
         console.error("Error fetching data:", error);

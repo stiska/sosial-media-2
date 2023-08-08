@@ -33,8 +33,10 @@ body{
     border-color: var(--border-color);
     overflow-y: auto;
     width: 60%;
-    font-size: 200px;
     height: 92vh;
+}
+.post-containder{
+    margin: 20px;
 }
 .profile-container{
     display: flex;
