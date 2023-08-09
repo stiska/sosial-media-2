@@ -6,6 +6,8 @@
         public string FirstName { get; set; }
         public string LastName { get; set; }
         public string Username { get; set; }
+        public List<User> FriendsList { get; set; }
+        public List<Posts> PostsList { get; set; }
 
         public User(string firstName, string lastName)
         {
@@ -13,6 +15,7 @@
             FirstName = firstName;
             LastName = lastName;
             Username = firstName + " " + lastName;
+            FriendsList = new List<User>();
         }
         public User() { }
     }
