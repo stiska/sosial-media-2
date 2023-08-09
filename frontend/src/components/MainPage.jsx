@@ -1,6 +1,6 @@
 import FriendsList from "./FriendsList";
 import NavBar from "./NavBar";
-import Posts from "./Posts";
+import PostsList from "./PostsList";
 
 export default function MainPage() {
   return (
@@ -9,7 +9,7 @@ export default function MainPage() {
       <div className="main-container">
         <div className="side-box">meny ting</div>
         <div className="main-box">
-          <Posts></Posts>
+          <PostsList></PostsList>
         </div>
         <FriendsList></FriendsList>
       </div>

@@ -19,7 +19,11 @@ export default function NavBar() {
   return (
     <div className="nav-bar">
       <div className="nav-bar-user">
-        <UserProfile user={user}></UserProfile>
+        {user == null ? (
+          ""
+        ) : (
+          <UserProfile username={user.username}></UserProfile>
+        )}
       </div>
       <input className="search-bar" type="text" />
       <button className="home-button">Home</button>

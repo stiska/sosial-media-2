@@ -1,27 +1,10 @@
-import { useEffect, useState } from "react";
+import UserProfile from "./UserProfile";
 
-export default function Posts() {
-  const [posts, setPosts] = useState(null);
-
-  useEffect(() => {
-    const getPosts = async () => {
-      try {
-        const response = await axios.get("/api/Posts");
-        console.log(response.data);
-        setPosts(response.data);
-      } catch (error) {
-        console.error("Error fetching data:", error);
-      }
-    };
-    getPosts();
-  }, []);
+export default function Posts({ post, poster }) {
   return (
-    <div>
-      {posts == null
-        ? ""
-        : posts.map((item) => (
-            <div className="post-containder">{item.content}</div>
-          ))}
+    <div className="post-containder">
+      <UserProfile username={poster}></UserProfile>
+      <div>{post}</div>
     </div>
   );
 }

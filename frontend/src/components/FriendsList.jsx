@@ -21,7 +21,7 @@ export default function FriendsList() {
       {friends == null
         ? ""
         : friends.map((item) => (
-            <UserProfile user={item} key={item.id}></UserProfile>
+            <UserProfile username={item.username} key={item.id}></UserProfile>
           ))}
     </div>
   );
