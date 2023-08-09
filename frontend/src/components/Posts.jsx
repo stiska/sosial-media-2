@@ -16,6 +16,12 @@ export default function Posts() {
     getPosts();
   }, []);
   return (
-    <div className="post-containder">{posts == null ? "" : posts.content}</div>
+    <div>
+      {posts == null
+        ? ""
+        : posts.map((item) => (
+            <div className="post-containder">{item.content}</div>
+          ))}
+    </div>
   );
 }
