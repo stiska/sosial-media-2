@@ -16,6 +16,7 @@
             LastName = lastName;
             Username = firstName + " " + lastName;
             FriendsList = new List<User>();
+            PostsList = new List<Posts>();
         }
         public User() { }
     }

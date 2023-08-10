@@ -5,6 +5,7 @@ var app = builder.Build();
 
 var inmemoryDb = new List<User>
 {
+    new User("Stian","Skatvedt"),
     new User("John", "Doe"),
     new User("Jane", "Smith"),
     new User("Michael", "Johnson"),
@@ -67,7 +68,7 @@ var posts = new List<Posts>
 
 app.MapGet("/api/test", () =>
 {
-    return new User("Stian","Skatvedt");
+     return inmemoryDb[0];
 });
 
 app.MapGet("/api/Posts", () =>
@@ -78,6 +79,16 @@ app.MapGet("/api/Posts", () =>
 app.MapGet("/api/FriendsList", () =>
 {
     return inmemoryDb;
+});
+app.MapPost("/api/AddComment", (CommentResponse comment) =>
+{
+    // get post by id get user by id post.comment.add(new comment(user,content))
+    var current = posts.Count();
+    var target = posts.SingleOrDefault(item => item.Id == comment.PostId);
+    var currentUser = inmemoryDb.SingleOrDefault(item => item.Id == comment.UserId);
+    target.Comments.Add(new Comment(currentUser, comment.Content, comment.PostId));
+    if(current == posts.Count()) { return "noe gikk galt"; }
+    else { return "yipi"; }
 });
 
 app.Run();
