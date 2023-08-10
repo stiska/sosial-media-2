@@ -5,7 +5,6 @@ var app = builder.Build();
 
 var inmemoryDb = new List<User>
 {
-    new User("Stian","Skatvedt"),
     new User("John", "Doe"),
     new User("Jane", "Smith"),
     new User("Michael", "Johnson"),
@@ -43,21 +42,11 @@ var posts = new List<Posts>
     " stressnivå og energinivå i løpet av dagen. Dette kan inkludere å opprettholde en jevn søvnplan," +
     " skape et behagelig sovemiljø og redusere bruk av elektroniske enheter før sengetid." +
     " Unngå koffein og alkohol før sengetid:" +
-    " Koffein og alkohol kan forstyrre søvnmønstre og føre til dårligere søvnkvalitet." +
-    " Prøv å begrense inntaket av koffein og alkohol, spesielt i timene før sengetid," +
-    " for å sikre at du får en god natts søvn." +
-    "Prøv avslapningsteknikker: Avslapningsteknikker som yoga," +
-    " meditasjon eller dyp pusting kan hjelpe deg med å roe ned før sengetid og forbedre søvnkvaliteten." +
-    " Prøv å inkludere disse teknikkene i din daglige rutine for å redusere stress og angst." +
+    
     "Vær oppmerksom på skjermtid: Skjermene fra mobiltelefoner,"),
     new Posts(inmemoryDb[3], "Hvordan få bedre søvn for bedre mental helse: " +
     "Søvn spiller en viktig rolle i vår mentale helse," +
     " og å forbedre søvnkvaliteten kan ha en positiv innvirkning på humør," +
-    " stressnivå og energinivå i løpet av dagen. Dette kan inkludere å opprettholde en jevn søvnplan," +
-    " skape et behagelig sovemiljø og redusere bruk av elektroniske enheter før sengetid." +
-    " Unngå koffein og alkohol før sengetid:" +
-    " Koffein og alkohol kan forstyrre søvnmønstre og føre til dårligere søvnkvalitet." +
-    " Prøv å begrense inntaket av koffein og alkohol, spesielt i timene før sengetid," +
     " for å sikre at du får en god natts søvn." +
     "Prøv avslapningsteknikker: Avslapningsteknikker som yoga," +
     " meditasjon eller dyp pusting kan hjelpe deg med å roe ned før sengetid og forbedre søvnkvaliteten." +
@@ -68,7 +57,7 @@ var posts = new List<Posts>
 
 app.MapGet("/api/test", () =>
 {
-     return inmemoryDb[0];
+    return inmemoryDb[0];
 });
 
 app.MapGet("/api/Posts", () =>
@@ -87,7 +76,7 @@ app.MapPost("/api/AddComment", (CommentResponse comment) =>
     var target = posts.SingleOrDefault(item => item.Id == comment.PostId);
     var currentUser = inmemoryDb.SingleOrDefault(item => item.Id == comment.UserId);
     target.Comments.Add(new Comment(currentUser, comment.Content, comment.PostId));
-    if(current == posts.Count()) { return "noe gikk galt"; }
+    if (current == posts.Count()) { return "noe gikk galt"; }
     else { return "yipi"; }
 });
 
