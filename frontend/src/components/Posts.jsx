@@ -26,7 +26,6 @@ export default function Posts({ post, currentUser }) {
             <button
               onClick={() => {
                 setEditReply(!editReply);
-                setShowReply(true);
               }}
             >
               Reply
@@ -40,15 +39,15 @@ export default function Posts({ post, currentUser }) {
             </button>
           </>
         ) : (
-          <form onSubmit={handleSubmit}>
+          <>
             <input
               className="search-bar"
               value={reply}
               onChange={(e) => setReply(e.target.value)}
               type="text"
             />
-            <button>Add</button>
-          </form>
+            <button onClick={handleSubmit}>Add</button>
+          </>
         )}
         {showReply == false
           ? ""
