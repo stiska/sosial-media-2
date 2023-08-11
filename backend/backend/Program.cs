@@ -1,4 +1,5 @@
 using backend.models;
+using System.Xml.Linq;
 
 var builder = WebApplication.CreateBuilder(args);
 var app = builder.Build();
@@ -69,13 +70,19 @@ app.MapGet("/api/FriendsList", () =>
 {
     return inmemoryDb;
 });
-app.MapPost("/api/AddComment", (CommentResponse comment) =>
+
+app.MapGet("/api/Comments/{id}", (Guid id) =>
+{
+    Posts targetPost = posts.SingleOrDefault(item => item.Id == id);
+    return targetPost.Comments;
+});
+
+app.MapPost("/api/AddComment", (Comment comment) =>
 {
     // get post by id get user by id post.comment.add(new comment(user,content))
     var current = posts.Count();
     var target = posts.SingleOrDefault(item => item.Id == comment.PostId);
-    var currentUser = inmemoryDb.SingleOrDefault(item => item.Id == comment.UserId);
-    target.Comments.Add(new Comment(currentUser, comment.Content, comment.PostId));
+    target.Comments.Add(new Comment(comment.UserId, comment.PosterName, comment.Content, comment.PostId));
     if (current == posts.Count()) { return "noe gikk galt"; }
     else { return "yipi"; }
 });

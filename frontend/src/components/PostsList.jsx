@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import PostInteract from "./PostInteract";
 import Posts from "./Posts";
 
 export default function PostsList({ currentUser }) {
@@ -22,7 +23,13 @@ export default function PostsList({ currentUser }) {
       {postsList == null
         ? ""
         : postsList.map((item) => (
-            <Posts key={item.id} post={item} currentUser={currentUser}></Posts>
+            <div className="post-containder">
+              <Posts key={item.id} post={item}></Posts>
+              <PostInteract
+                post={item}
+                currentUser={currentUser}
+              ></PostInteract>
+            </div>
           ))}
     </div>
   );

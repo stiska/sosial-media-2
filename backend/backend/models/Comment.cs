@@ -7,11 +7,11 @@
         public Guid UserId { get; set; }
         public string PosterName { get; set; }
         public string Content { get; set; }
-        public Comment(User user, string content, Guid postId)
+        public Comment(Guid userId, string username, string content, Guid postId)
         {
             Id = Guid.NewGuid();
-            UserId = user.Id;
-            PosterName = user.Username;
+            UserId = userId;
+            PosterName = username;
             Content = content;
             PostId = postId;
         }
