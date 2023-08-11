@@ -16,7 +16,6 @@ export default function PostInteract({ post, currentUser }) {
     };
     const response = await axios.post("/api/AddComment", comment);
     const responseCommments = await axios.get("/api/Comments/" + post.id);
-    console.log(response.data);
     setComments(responseCommments.data);
     setEditReply(!editReply);
   };
@@ -58,7 +57,7 @@ export default function PostInteract({ post, currentUser }) {
         : comments.map((item) => (
             <div key={item.id} className="comments">
               <UserProfile username={item.posterName}></UserProfile>{" "}
-              {item.content}{" "}
+              {item.content}
             </div>
           ))}
     </div>

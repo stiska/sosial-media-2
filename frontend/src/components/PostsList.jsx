@@ -9,7 +9,6 @@ export default function PostsList({ currentUser }) {
     const getPosts = async () => {
       try {
         const response = await axios.get("/api/Posts");
-        console.log(response.data);
         setPostsList(response.data);
       } catch (error) {
         console.error("Error fetching data:", error);
@@ -23,8 +22,8 @@ export default function PostsList({ currentUser }) {
       {postsList == null
         ? ""
         : postsList.map((item) => (
-            <div className="post-containder">
-              <Posts key={item.id} post={item}></Posts>
+            <div key={item.id} className="post-containder">
+              <Posts post={item}></Posts>
               <PostInteract
                 post={item}
                 currentUser={currentUser}

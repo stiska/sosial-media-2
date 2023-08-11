@@ -79,7 +79,6 @@ app.MapGet("/api/Comments/{id}", (Guid id) =>
 
 app.MapPost("/api/AddComment", (Comment comment) =>
 {
-    // get post by id get user by id post.comment.add(new comment(user,content))
     var current = posts.Count();
     var target = posts.SingleOrDefault(item => item.Id == comment.PostId);
     target.Comments.Add(new Comment(comment.UserId, comment.PosterName, comment.Content, comment.PostId));
