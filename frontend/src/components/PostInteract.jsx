@@ -50,6 +50,13 @@ export default function PostInteract({ post, currentUser }) {
             type="text"
           />
           <button onClick={handleSubmit}>Add</button>
+          <button
+            onClick={() => {
+              setEditReply(!editReply);
+            }}
+          >
+            X
+          </button>
         </form>
       )}
       {showReply == false

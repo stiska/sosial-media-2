@@ -43,8 +43,8 @@ var posts = new List<Posts>
     " stressnivå og energinivå i løpet av dagen. Dette kan inkludere å opprettholde en jevn søvnplan," +
     " skape et behagelig sovemiljø og redusere bruk av elektroniske enheter før sengetid." +
     " Unngå koffein og alkohol før sengetid:" +
-    
     "Vær oppmerksom på skjermtid: Skjermene fra mobiltelefoner,"),
+
     new Posts(inmemoryDb[3], "Hvordan få bedre søvn for bedre mental helse: " +
     "Søvn spiller en viktig rolle i vår mentale helse," +
     " og å forbedre søvnkvaliteten kan ha en positiv innvirkning på humør," +
@@ -53,6 +53,7 @@ var posts = new List<Posts>
     " meditasjon eller dyp pusting kan hjelpe deg med å roe ned før sengetid og forbedre søvnkvaliteten." +
     " Prøv å inkludere disse teknikkene i din daglige rutine for å redusere stress og angst." +
     "Vær oppmerksom på skjermtid: Skjermene fra mobiltelefoner,"),
+
 
 };
 
