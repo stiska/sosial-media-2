@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
-import FriendsList from "./FriendsList";
 import NavBar from "./NavBar";
+import FriendsList from "./FriendsList";
+import Chat from "./Chat";
 import PostsList from "./PostsList";
 
 export default function MainPage() {
@@ -26,7 +27,10 @@ export default function MainPage() {
         <div className="main-box">
           <PostsList currentUser={currentUser}></PostsList>
         </div>
-        <FriendsList></FriendsList>
+        <div className="side-box">
+          <FriendsList></FriendsList>
+          <Chat></Chat>
+        </div>
       </div>
     </div>
   );

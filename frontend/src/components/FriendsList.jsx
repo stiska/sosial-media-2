@@ -17,7 +17,7 @@ export default function FriendsList() {
   }, []);
 
   return (
-    <div className="side-box">
+    <div className="friendslist">
       {friends == null
         ? ""
         : friends.map((item) => (

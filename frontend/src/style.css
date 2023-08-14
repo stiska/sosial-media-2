@@ -24,9 +24,10 @@ body{
 .side-box{
     border-style: solid;
     border-color: var(--border-color);
+    padding-left: 10px;
     width: 20%; 
     height: 92vh; 
-    overflow-y: auto; 
+     
 }
 .main-box{
     border-style: solid;
@@ -41,8 +42,7 @@ body{
 .profile-container{
     display: flex;
     flex-direction: row;
-    align-items: center;
-   
+    align-items: center;  
 }
 .profile-img{
     height: 30px;
@@ -53,6 +53,19 @@ body{
     margin: 8px;
     padding: 5px;
     background-color: #4c4c4c;
+}
+.friendslist{
+    overflow-y: auto;
+    height: 92vh;
+}
+.chat{
+    position: fixed;
+    bottom: 20px;
+    right: 30px;
+    width: 310px;
+    border-style: solid;
+    border-color: var(--border-color);
+    background-color: #000000;
 }
 ::-webkit-scrollbar {
     width: 10px;
