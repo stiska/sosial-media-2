@@ -61,11 +61,10 @@ body{
 }
 .friendslist-w-chat{
     overflow-y: auto;
-    height: 52vh;
+    height: 42vh;
 }
 .chat{
-    
-    height: 40vh;
+    height: 50vh;
     border-style: solid;
     border-color: var(--border-color);
     background-color: #000000;
