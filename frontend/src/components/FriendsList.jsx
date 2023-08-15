@@ -3,6 +3,7 @@ import UserProfile from "./UserProfile";
 
 export default function FriendsList() {
   const [friends, setFriends] = useState(null);
+  const [activeChat, setActiveChat] = useState(true);
 
   useEffect(() => {
     const getFriends = async () => {
@@ -17,12 +18,25 @@ export default function FriendsList() {
   }, []);
 
   return (
-    <div className="friendslist">
-      {friends == null
-        ? ""
-        : friends.map((item) => (
+    <>
+      {friends == null ? (
+        ""
+      ) : activeChat == false ? (
+        <div className="friendslist">
+          {friends.map((item) => (
             <UserProfile username={item.username} key={item.id}></UserProfile>
           ))}
-    </div>
+        </div>
+      ) : (
+        <>
+          <div className="friendslist-w-chat">
+            {friends.map((item) => (
+              <UserProfile username={item.username} key={item.id}></UserProfile>
+            ))}
+          </div>
+          <div className="chat">Chatt!!!!</div>
+        </>
+      )}
+    </>
   );
 }

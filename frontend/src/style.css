@@ -22,12 +22,13 @@ body{
     justify-content: space-evenly;
 }
 .side-box{
+    display: flex;
+    flex-direction: column;
+    justify-content: stretch;
     border-style: solid;
     border-color: var(--border-color);
-    padding-left: 10px;
     width: 20%; 
-    height: 92vh; 
-     
+    height: 92vh;  
 }
 .main-box{
     border-style: solid;
@@ -58,11 +59,13 @@ body{
     overflow-y: auto;
     height: 92vh;
 }
+.friendslist-w-chat{
+    overflow-y: auto;
+    height: 52vh;
+}
 .chat{
-    position: fixed;
-    bottom: 20px;
-    right: 30px;
-    width: 310px;
+    
+    height: 40vh;
     border-style: solid;
     border-color: var(--border-color);
     background-color: #000000;
