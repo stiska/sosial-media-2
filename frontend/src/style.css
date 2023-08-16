@@ -1,104 +1,108 @@
 :root {
-    --border-color: #ffffff; 
+  --border-color: #ffffff;
 }
-body{
-    background-color: #000000;
+body {
+  background-color: #000000;
 }
-.pallet{
-    color: #272744;
-    color: #494d7e;
-    color: #8b6d9c;
-    color: #c69fa5;
-    color: #f2d3ab;
-    color: #fbf5ef;
+.pallet {
+  color: #272744;
+  color: #494d7e;
+  color: #8b6d9c;
+  color: #c69fa5;
+  color: #f2d3ab;
+  color: #fbf5ef;
 }
-.main-page{
-    display: flex;
-    flex-direction: column;
-    color: #ffffff;
+.main-page {
+  display: flex;
+  flex-direction: column;
+  color: #ffffff;
 }
-.main-container{
-    display: flex;
-    justify-content: space-evenly;
+.main-container {
+  display: flex;
+  justify-content: space-evenly;
 }
-.side-box{
-    display: flex;
-    flex-direction: column;
-    justify-content: stretch;
-    border-style: solid;
-    border-color: var(--border-color);
-    width: 20%; 
-    height: 92vh;  
+.side-box {
+  display: flex;
+  flex-direction: column;
+  justify-content: stretch;
+  border-style: solid;
+  border-color: var(--border-color);
+  width: 20%;
+  height: 92vh;
 }
-.main-box{
-    border-style: solid;
-    border-color: var(--border-color);
-    overflow-y: auto;
-    width: 60%;
-    height: 92vh;
+.main-box {
+  border-style: solid;
+  border-color: var(--border-color);
+  overflow-y: auto;
+  width: 60%;
+  height: 92vh;
 }
-.post-containder{
-    margin: 20px;
+.post-containder {
+  margin: 20px;
 }
-.profile-container{
-    display: flex;
-    flex-direction: row;
-    align-items: center;  
+.profile-container {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
 }
-.profile-img{
-    height: 30px;
-    width: 30px;
-    padding: 5px;
+.profile-img {
+  height: 30px;
+  width: 30px;
+  padding: 5px;
 }
-.comments{
-    margin: 8px;
-    padding: 5px;
-    background-color: #4c4c4c;
+.comments {
+  margin: 8px;
+  padding: 5px;
+  background-color: #4c4c4c;
 }
-.friendslist{
-    overflow-y: auto;
-    height: 92vh;
+.friendslist {
+  overflow-y: auto;
+  height: 92vh;
 }
-.friendslist-w-chat{
-    overflow-y: auto;
-    height: 42vh;
+.friendslist-w-chat {
+  overflow-y: auto;
+  height: 42vh;
 }
-.chat{
-    display: flex;
-    flex-direction: column;
-    height: 50vh;
-    border-style: solid;
-    border-color: var(--border-color);
-    background-color: #000000;
+.chat {
+  display: flex;
+  flex-direction: column;
+  height: 50vh;
+  border-style: solid;
+  border-color: var(--border-color);
+  background-color: #000000;
+  padding: 5px;
 }
-.chat-bar{
-    display: flex;
-    flex-direction: row;
-    padding: 5px;
+.chat-box {
+  height: 42vh;
+  margin: 8px;
+  overflow-y: auto;
 }
-.chat-bar-person{
-    width: 95%;
+.chat-bar {
+  display: flex;
+  flex-direction: row;
+}
+.chat-bar-primary {
+  width: 95%;
 }
 ::-webkit-scrollbar {
-    width: 10px;
-  }
-  
-  /* Track */
-  ::-webkit-scrollbar-track {
-    background: transparent;
-    border-radius: 10px;
-  }
-  
-  /* Handle */
-  ::-webkit-scrollbar-thumb {
-    background:transparent;
-    border-color: transparent;
-    border-width: 2px;
-    border-radius: 50px;
-  }
-  
-  /* Handle on hover */
-  ::-webkit-scrollbar-thumb:hover {
-    background: rgb(189, 189, 189);
-  }
+  width: 10px;
+}
 
+/* Track */
+::-webkit-scrollbar-track {
+  background: transparent;
+  border-radius: 10px;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: transparent;
+  border-color: transparent;
+  border-width: 2px;
+  border-radius: 50px;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: rgb(189, 189, 189);
+}

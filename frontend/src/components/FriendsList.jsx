@@ -58,7 +58,7 @@ export default function FriendsList() {
           </div>
           <div className="chat">
             <div className="chat-bar">
-              <div className="chat-bar-person">{chatTarget}</div>
+              <div className="chat-bar-primary">{chatTarget}</div>
               <button
                 onClick={() => {
                   setActiveChat(false);
@@ -69,6 +69,13 @@ export default function FriendsList() {
                 X
               </button>
             </div>
+            <div className="chat-box">chat</div>
+            <form>
+              <div className="chat-bar">
+                <input className="chat-bar-primary" type="text" />
+                <button>send</button>
+              </div>
+            </form>
           </div>
         </>
       )}
