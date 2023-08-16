@@ -53,8 +53,6 @@ var posts = new List<Posts>
     " meditasjon eller dyp pusting kan hjelpe deg med å roe ned før sengetid og forbedre søvnkvaliteten." +
     " Prøv å inkludere disse teknikkene i din daglige rutine for å redusere stress og angst." +
     "Vær oppmerksom på skjermtid: Skjermene fra mobiltelefoner,"),
-
-
 };
 
 app.MapGet("/api/test", () =>

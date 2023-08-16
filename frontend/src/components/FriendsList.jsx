@@ -4,6 +4,7 @@ import UserProfile from "./UserProfile";
 export default function FriendsList() {
   const [friends, setFriends] = useState(null);
   const [activeChat, setActiveChat] = useState(true);
+  const [chatTarget, setChatTarget] = useState("");
 
   useEffect(() => {
     const getFriends = async () => {
@@ -24,17 +25,40 @@ export default function FriendsList() {
       ) : activeChat == false ? (
         <div className="friendslist">
           {friends.map((item) => (
-            <UserProfile username={item.username} key={item.id}></UserProfile>
+            <div
+              key={item.id}
+              className="this "
+              onClick={() => {
+                setActiveChat(true);
+                setChatTarget(item.id);
+                console.log("has run");
+              }}
+            >
+              <UserProfile username={item.username}></UserProfile>
+            </div>
           ))}
         </div>
       ) : (
         <>
           <div className="friendslist-w-chat">
             {friends.map((item) => (
-              <UserProfile username={item.username} key={item.id}></UserProfile>
+              <div
+                key={item.id}
+                className="this "
+                onClick={() => {
+                  setActiveChat(true);
+                  setChatTarget(item.id);
+                  console.log("has run");
+                }}
+              >
+                <UserProfile username={item.username}></UserProfile>
+              </div>
             ))}
           </div>
-          <div className="chat">Chatt!!!!</div>
+          <div className="chat">
+            Chatt!!!!{" "}
+            <button onClick={() => setActiveChat(!activeChat)}>X</button>
+          </div>
         </>
       )}
     </>
