@@ -3,8 +3,9 @@ import UserProfile from "./UserProfile";
 
 export default function FriendsList() {
   const [friends, setFriends] = useState(null);
-  const [activeChat, setActiveChat] = useState(true);
+  const [activeChat, setActiveChat] = useState(false);
   const [chatTarget, setChatTarget] = useState("");
+  const [chatTargetId, setChatTargetId] = useState("");
 
   useEffect(() => {
     const getFriends = async () => {
@@ -30,8 +31,8 @@ export default function FriendsList() {
               className="this "
               onClick={() => {
                 setActiveChat(true);
-                setChatTarget(item.id);
-                console.log("has run");
+                setChatTargetId(item.id);
+                setChatTarget(item.username);
               }}
             >
               <UserProfile username={item.username}></UserProfile>
@@ -47,8 +48,8 @@ export default function FriendsList() {
                 className="this "
                 onClick={() => {
                   setActiveChat(true);
-                  setChatTarget(item.id);
-                  console.log("has run");
+                  setChatTargetId(item.id);
+                  setChatTarget(item.username);
                 }}
               >
                 <UserProfile username={item.username}></UserProfile>
@@ -56,8 +57,18 @@ export default function FriendsList() {
             ))}
           </div>
           <div className="chat">
-            Chatt!!!!{" "}
-            <button onClick={() => setActiveChat(!activeChat)}>X</button>
+            <div className="chat-bar">
+              <div className="chat-bar-person">{chatTarget}</div>
+              <button
+                onClick={() => {
+                  setActiveChat(false);
+                  setChatTargetId("");
+                  setChatTarget("");
+                }}
+              >
+                X
+              </button>
+            </div>
           </div>
         </>
       )}

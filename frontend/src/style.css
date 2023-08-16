@@ -64,11 +64,22 @@ body{
     height: 42vh;
 }
 .chat{
+    display: flex;
+    flex-direction: column;
     height: 50vh;
     border-style: solid;
     border-color: var(--border-color);
     background-color: #000000;
 }
+.chat-bar{
+    display: flex;
+    flex-direction: row;
+    padding: 5px;
+}
+.chat-bar-person{
+    width: 95%;
+}
+
 ::-webkit-scrollbar {
     width: 10px;
   }
