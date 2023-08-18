@@ -19,6 +19,12 @@ export default function FriendsList() {
     getFriends();
   }, []);
 
+  const selectFriend = (item) => {
+    setChatTargetId(item.id);
+    setChatTarget(item.username);
+    setActiveChat(true);
+  };
+
   return (
     <>
       {friends == null ? (
@@ -28,11 +34,8 @@ export default function FriendsList() {
           {friends.map((item) => (
             <div
               key={item.id}
-              className="this "
               onClick={() => {
-                setActiveChat(true);
-                setChatTargetId(item.id);
-                setChatTarget(item.username);
+                selectFriend(item);
               }}
             >
               <UserProfile username={item.username}></UserProfile>
@@ -45,11 +48,8 @@ export default function FriendsList() {
             {friends.map((item) => (
               <div
                 key={item.id}
-                className="this "
                 onClick={() => {
-                  setActiveChat(true);
-                  setChatTargetId(item.id);
-                  setChatTarget(item.username);
+                  selectFriend(item);
                 }}
               >
                 <UserProfile username={item.username}></UserProfile>
