@@ -1,7 +1,8 @@
 import { useEffect, useState } from "react";
 import UserProfile from "./UserProfile";
 
-export default function FriendsList() {
+export default function FriendsList({ currentUser }) {
+  const [user, setUser] = useState(currentUser);
   const [friends, setFriends] = useState(null);
   const [activeChat, setActiveChat] = useState(false);
   const [chatTarget, setChatTarget] = useState("");
@@ -19,9 +20,20 @@ export default function FriendsList() {
     getFriends();
   }, []);
 
-  const selectFriend = (item) => {
+  const selectFriend = async (item) => {
     setChatTargetId(item.id);
     setChatTarget(item.username);
+    const ids = {
+      CurrentId: user.id,
+      FriendId: chatTargetId,
+    };
+    try {
+      const response = await axios.post("/api/Chat", ids);
+      console.log(response.data);
+    } catch (error) {
+      console.error("Error fetching data:", error);
+    }
+
     setActiveChat(true);
   };
 

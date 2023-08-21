@@ -27,7 +27,7 @@ export default function MainPage() {
           <PostsList currentUser={currentUser}></PostsList>
         </div>
         <div className="side-box">
-          <FriendsList></FriendsList>
+          <FriendsList currentUser={currentUser}></FriendsList>
         </div>
       </div>
     </div>

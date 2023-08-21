@@ -4,7 +4,7 @@ using System.Xml.Linq;
 var builder = WebApplication.CreateBuilder(args);
 var app = builder.Build();
 
-var inmemoryDb = new List<User>
+var users = new List<User>
 {
     new User("John", "Doe"),
     new User("Jane", "Smith"),
@@ -28,16 +28,14 @@ var inmemoryDb = new List<User>
     new User("Daniel", "Hernandez"),
     new User("Susan", "Young"),
     new User("Paul", "Scott"),
-    new User("Jessica", "Adams"),
-    new User("Andrew", "Green"),
-    new User("Mark", "Baker"),
-    new User("Nancy", "Turner"),
-    new User("Steven", "Perez"),
-    new User("Laura", "Sanchez")
+};
+var chats = new List<Chat>
+{
+    new Chat("")
 };
 var posts = new List<Posts>
 {
-    new Posts(inmemoryDb[2], "Hvordan få bedre søvn for bedre mental helse: " +
+    new Posts(users[2], "Hvordan få bedre søvn for bedre mental helse: " +
     "Søvn spiller en viktig rolle i vår mentale helse," +
     " og å forbedre søvnkvaliteten kan ha en positiv innvirkning på humør," +
     " stressnivå og energinivå i løpet av dagen. Dette kan inkludere å opprettholde en jevn søvnplan," +
@@ -45,7 +43,7 @@ var posts = new List<Posts>
     " Unngå koffein og alkohol før sengetid:" +
     "Vær oppmerksom på skjermtid: Skjermene fra mobiltelefoner,"),
 
-    new Posts(inmemoryDb[3], "Hvordan få bedre søvn for bedre mental helse: " +
+    new Posts(users[3], "Hvordan få bedre søvn for bedre mental helse: " +
     "Søvn spiller en viktig rolle i vår mentale helse," +
     " og å forbedre søvnkvaliteten kan ha en positiv innvirkning på humør," +
     " for å sikre at du får en god natts søvn." +
@@ -57,7 +55,7 @@ var posts = new List<Posts>
 
 app.MapGet("/api/test", () =>
 {
-    return inmemoryDb[0];
+    return users[0];
 });
 
 app.MapGet("/api/Posts", () =>
@@ -65,9 +63,24 @@ app.MapGet("/api/Posts", () =>
     return posts;
 });
 
+app.MapPost("/api/Chat", (ChatIdResponse chatIdResponse) =>
+{
+    var target = chats.SingleOrDefault(item => item.Paricipants.Contains(chatIdResponse.CurrentId) && 
+    item.Paricipants.Contains(chatIdResponse.FriendId));
+    if (target == null)
+    {
+        Chat chat = new Chat("");
+        chat.Paricipants.Add(chatIdResponse.CurrentId);
+        chat.Paricipants.Add(chatIdResponse.FriendId);
+        chats.Add(chat);
+        target = chat;
+    }
+    return target;
+});
+
 app.MapGet("/api/FriendsList", () =>
 {
-    return inmemoryDb;
+    return users;
 });
 
 app.MapGet("/api/Comments/{id}", (Guid id) =>
