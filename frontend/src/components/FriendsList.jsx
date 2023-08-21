@@ -20,11 +20,15 @@ export default function FriendsList({ currentUser }) {
     getFriends();
   }, []);
 
-  const selectFriend = async (item) => {
+  const selectFriend = (item) => {
     setChatTargetId(item.id);
     setChatTarget(item.username);
+    setChatRequest();
+    setActiveChat(true);
+  };
+  const setChatRequest = async () => {
     const ids = {
-      CurrentId: user.id,
+      CurrentId: currentUser.id,
       FriendId: chatTargetId,
     };
     try {
@@ -33,8 +37,6 @@ export default function FriendsList({ currentUser }) {
     } catch (error) {
       console.error("Error fetching data:", error);
     }
-
-    setActiveChat(true);
   };
 
   return (
