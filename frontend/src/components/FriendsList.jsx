@@ -2,7 +2,6 @@ import { useEffect, useState } from "react";
 import UserProfile from "./UserProfile";
 
 export default function FriendsList({ currentUser }) {
-  const [user, setUser] = useState(currentUser);
   const [friends, setFriends] = useState(null);
   const [activeChat, setActiveChat] = useState(false);
   const [chatTarget, setChatTarget] = useState("");
@@ -23,13 +22,13 @@ export default function FriendsList({ currentUser }) {
   const selectFriend = (item) => {
     setChatTargetId(item.id);
     setChatTarget(item.username);
-    setChatRequest();
+    setChatRequest(item);
     setActiveChat(true);
   };
-  const setChatRequest = async () => {
+  const setChatRequest = async (item) => {
     const ids = {
       CurrentId: currentUser.id,
-      FriendId: chatTargetId,
+      FriendId: item.id,
     };
     try {
       const response = await axios.post("/api/Chat", ids);
