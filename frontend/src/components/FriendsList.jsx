@@ -5,7 +5,7 @@ export default function FriendsList({ currentUser }) {
   const [friends, setFriends] = useState(null);
   const [activeChat, setActiveChat] = useState(false);
   const [chatTarget, setChatTarget] = useState("");
-  const [chatTargetId, setChatTargetId] = useState("");
+  //const [chatTargetId, setChatTargetId] = useState("");
 
   useEffect(() => {
     const getFriends = async () => {
@@ -20,7 +20,6 @@ export default function FriendsList({ currentUser }) {
   }, []);
 
   const selectFriend = (item) => {
-    setChatTargetId(item.id);
     setChatTarget(item.username);
     setChatRequest(item);
     setActiveChat(true);
@@ -75,7 +74,6 @@ export default function FriendsList({ currentUser }) {
               <button
                 onClick={() => {
                   setActiveChat(false);
-                  setChatTargetId("");
                   setChatTarget("");
                 }}
               >

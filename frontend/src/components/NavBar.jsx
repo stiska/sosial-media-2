@@ -12,7 +12,7 @@ export default function NavBar({ currentUser }) {
         )}
       </div>
       <input className="search-bar" type="text" />
-      <button className="home-button">Home</button>
+      <button className="home-button"></button>
     </div>
   );
 }

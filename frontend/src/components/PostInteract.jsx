@@ -18,6 +18,7 @@ export default function PostInteract({ post, currentUser }) {
     const responseCommments = await axios.get("/api/Comments/" + post.id);
     setComments(responseCommments.data);
     setEditReply(!editReply);
+    setReply("");
   };
   return (
     <div>
