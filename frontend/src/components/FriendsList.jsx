@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import UserProfile from "./UserProfile";
+import Chat from "./Chat";
 
 export default function FriendsList({ currentUser }) {
   const [friends, setFriends] = useState(null);
@@ -19,6 +20,10 @@ export default function FriendsList({ currentUser }) {
     getFriends();
   }, []);
 
+  const closeChat = () => {
+    setActiveChat(false);
+    setChatTarget("");
+  };
   const selectFriend = (item) => {
     setChatTarget(item.username);
     setChatRequest(item);
@@ -68,26 +73,7 @@ export default function FriendsList({ currentUser }) {
               </div>
             ))}
           </div>
-          <div className="chat">
-            <div className="chat-bar">
-              <div className="chat-bar-primary">{chatTarget}</div>
-              <button
-                onClick={() => {
-                  setActiveChat(false);
-                  setChatTarget("");
-                }}
-              >
-                X
-              </button>
-            </div>
-            <div className="chat-box">chat</div>
-            <form>
-              <div className="chat-bar">
-                <input className="chat-bar-primary" type="text" />
-                <button>send</button>
-              </div>
-            </form>
-          </div>
+          <Chat closeChat={closeChat} chatTarget={chatTarget}></Chat>
         </>
       )}
     </>
