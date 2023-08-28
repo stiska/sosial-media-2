@@ -6,6 +6,7 @@ export default function FriendsList({ currentUser }) {
   const [friends, setFriends] = useState(null);
   const [activeChat, setActiveChat] = useState(false);
   const [chatTarget, setChatTarget] = useState("");
+  const [currentChat, setCurrentChat] = useState(null);
   //const [chatTargetId, setChatTargetId] = useState("");
 
   useEffect(() => {
@@ -36,7 +37,7 @@ export default function FriendsList({ currentUser }) {
     };
     try {
       const response = await axios.post("/api/Chat", ids);
-      console.log(response.data);
+      setCurrentChat(response.data);
     } catch (error) {
       console.error("Error fetching data:", error);
     }
@@ -73,7 +74,12 @@ export default function FriendsList({ currentUser }) {
               </div>
             ))}
           </div>
-          <Chat closeChat={closeChat} chatTarget={chatTarget}></Chat>
+          <Chat
+            closeChat={closeChat}
+            chatTarget={chatTarget}
+            chatObject={currentChat}
+            currentUser={currentUser}
+          ></Chat>
         </>
       )}
     </>

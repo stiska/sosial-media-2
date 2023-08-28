@@ -9,7 +9,7 @@
 
         public Message(string content,Guid userId, Guid chatId) 
         {
-            Id = new Guid();
+            Id = Guid.NewGuid();
             ChatId = chatId;
             Content = content;
             UserId = userId;

@@ -55,6 +55,13 @@ body {
   padding: 5px;
   background-color: #4c4c4c;
 }
+.message {
+  display: flex;
+  margin: 8px;
+  padding: 5px;
+
+  background-color: #4c4c4c;
+}
 .friendslist {
   overflow-y: auto;
   height: 92vh;

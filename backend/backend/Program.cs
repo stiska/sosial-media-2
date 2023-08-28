@@ -1,4 +1,5 @@
 using backend.models;
+using System.ComponentModel.Design;
 using System.Xml.Linq;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -77,6 +78,16 @@ app.MapPost("/api/Chat", (ChatIdResponse chatIdResponse) =>
     }
     return target;
 });
+app.MapPost("/api/AddMesage", (Message comment) =>
+{
+    Chat targetChat = chats.SingleOrDefault(item => item.Id == comment.ChatId);
+    targetChat.Messages.Add(new Message(comment.Content, comment.UserId, comment.ChatId));
+});
+app.MapGet("/api/Mesages/{id}", (Guid id) =>
+{
+   Chat targetChat = chats.SingleOrDefault(item => item.Id == id);
+    return targetChat.Messages;
+});
 
 app.MapGet("/api/FriendsList", () =>
 {
@@ -91,11 +102,8 @@ app.MapGet("/api/Comments/{id}", (Guid id) =>
 
 app.MapPost("/api/AddComment", (Comment comment) =>
 {
-    var current = posts.Count();
     var target = posts.SingleOrDefault(item => item.Id == comment.PostId);
-    target.Comments.Add(new Comment(comment.UserId, comment.PosterName, comment.Content, comment.PostId));
-    if (current == posts.Count()) { return "noe gikk galt"; }
-    else { return "yipi"; }
+    target.Comments.Add(new Comment(comment.UserId, comment.PosterName, comment.Content, comment.PostId));   
 });
 
 app.Run();
