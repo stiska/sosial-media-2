@@ -1,9 +1,16 @@
 using backend.models;
+using System.Data.SqlTypes;
+using System;
 using System.ComponentModel.Design;
 using System.Xml.Linq;
+using static System.Net.Mime.MediaTypeNames;
+using static System.Runtime.InteropServices.JavaScript.JSType;
+using System.Data.SqlClient;
+using Dapper;
 
 var builder = WebApplication.CreateBuilder(args);
 var app = builder.Build();
+const string connStr = @"Data Source=(localdb)\MSSQLLocalDB;Initial Catalog=SomeDB;Integrated Security=True;";
 
 var users = new List<User>
 {
@@ -54,9 +61,12 @@ var posts = new List<Posts>
     "Vær oppmerksom på skjermtid: Skjermene fra mobiltelefoner,"),
 };
 
-app.MapGet("/api/test", () =>
+app.MapGet("/api/test", async() =>
 {
-    return users[0];
+    var conn = new SqlConnection(connStr);
+    const string sql = "SELECT Id, FirstName, LastName, Username FROM Users";
+    var currentUser = await conn.QueryAsync<User>(sql);
+    return currentUser;
 });
 
 app.MapGet("/api/Posts", () =>

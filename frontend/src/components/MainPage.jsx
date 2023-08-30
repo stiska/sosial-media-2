@@ -10,6 +10,7 @@ export default function MainPage() {
     const getUser = async () => {
       try {
         const response = await axios.get("/api/test");
+
         setCurrentUser(response.data);
       } catch (error) {
         console.error("Error fetching data:", error);

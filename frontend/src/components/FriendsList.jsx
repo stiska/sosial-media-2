@@ -25,11 +25,13 @@ export default function FriendsList({ currentUser }) {
     setActiveChat(false);
     setChatTarget("");
   };
+
   const selectFriend = (item) => {
     setChatTarget(item.username);
     setChatRequest(item);
     setActiveChat(true);
   };
+
   const setChatRequest = async (item) => {
     const ids = {
       CurrentId: currentUser.id,
