@@ -20,6 +20,7 @@ export default function PostInteract({ post, currentUser }) {
     setEditReply(!editReply);
     setReply("");
   };
+
   return (
     <div>
       {editReply == false ? (

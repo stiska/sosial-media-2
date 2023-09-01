@@ -14,19 +14,6 @@ const string connStr = @"Data Source=(localdb)\MSSQLLocalDB;Initial Catalog=Some
 
 var users = new List<User>
 {
-    new User("John", "Doe"),
-    new User("Jane", "Smith"),
-    new User("Michael", "Johnson"),
-    new User("Emily", "Williams"),
-    new User("David", "Brown"),
-    new User("Sarah", "Jones"),
-    new User("Robert", "Garcia"),
-    new User("Jennifer", "Martinez"),
-    new User("William", "Davis"),
-    new User("Linda", "Rodriguez"),
-    new User("James", "Miller"),
-    new User("Richard", "Gonzalez"),
-    new User("Mary", "Lopez"),
     new User("Charles", "Lee"),
     new User("Patricia", "Hernandez"),
     new User("Matthew", "Clark"),
@@ -61,12 +48,12 @@ var posts = new List<Posts>
     "Vær oppmerksom på skjermtid: Skjermene fra mobiltelefoner,"),
 };
 
-app.MapGet("/api/test", async() =>
+app.MapGet("/api/User", async() =>
 {
     var conn = new SqlConnection(connStr);
-    const string sql = "SELECT Id, FirstName, LastName, Username FROM Users";
+    const string sql = "SELECT Id, FirstName, LastName, Username FROM Users WHERE Id = '290ee2b9-3277-46cf-9320-7674b06b670d'";
     var currentUser = await conn.QueryAsync<User>(sql);
-    return currentUser;
+    return currentUser.SingleOrDefault(item => item.Id != null) ;
 });
 
 app.MapGet("/api/Posts", () =>

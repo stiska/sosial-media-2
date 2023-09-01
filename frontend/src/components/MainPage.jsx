@@ -9,9 +9,9 @@ export default function MainPage() {
   useEffect(() => {
     const getUser = async () => {
       try {
-        const response = await axios.get("/api/test");
-
+        const response = await axios.get("/api/User");
         setCurrentUser(response.data);
+        console.log(response.data);
       } catch (error) {
         console.error("Error fetching data:", error);
       }

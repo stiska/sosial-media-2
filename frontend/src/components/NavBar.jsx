@@ -8,7 +8,7 @@ export default function NavBar({ currentUser }) {
         {currentUser == null ? (
           ""
         ) : (
-          <UserProfile username={currentUser[0].username}></UserProfile>
+          <UserProfile username={currentUser.username}></UserProfile>
         )}
       </div>
       <input className="search-bar" type="text" />

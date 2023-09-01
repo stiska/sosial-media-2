@@ -1,4 +1,3 @@
-import { useState } from "react";
 import UserProfile from "./UserProfile";
 
 export default function Posts({ post }) {
