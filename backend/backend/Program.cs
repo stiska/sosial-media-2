@@ -56,6 +56,24 @@ app.MapGet("/api/User", async() =>
     return currentUser.SingleOrDefault(item => item.Id != null) ;
 });
 
+app.MapGet("/api/Users", async () =>
+{
+    var conn = new SqlConnection(connStr);
+    const string sql = "SELECT Id, FirstName, LastName, Username FROM Users WHERE Id != '290ee2b9-3277-46cf-9320-7674b06b670d'";
+    var users = await conn.QueryAsync<User>(sql);
+    return users;
+});
+
+app.MapPost("/api/AddFriend", async (AddFriend ids) =>
+{
+    var conn = new SqlConnection(connStr);
+    const string sql = "INSERT Friends (UserId, FriendId) VALUES (@UserId, @FriendId);";
+    var rowsAffected = await conn.ExecuteAsync(sql, ids);
+    const string sql2 = "INSERT Friends (UserId, FriendId) VALUES (@FriendId, @UserId);";
+    rowsAffected += await conn.ExecuteAsync(sql2, ids);
+    return rowsAffected;
+});
+
 app.MapGet("/api/Posts", () =>
 {
     return posts;
@@ -80,6 +98,7 @@ app.MapPost("/api/AddMesage", (Message comment) =>
     Chat targetChat = chats.SingleOrDefault(item => item.Id == comment.ChatId);
     targetChat.Messages.Add(new Message(comment.Content, comment.UserId, comment.ChatId));
 });
+
 app.MapGet("/api/Mesages/{id}", (Guid id) =>
 {
    Chat targetChat = chats.SingleOrDefault(item => item.Id == id);

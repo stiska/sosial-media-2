@@ -33,7 +33,11 @@ export default function Chat({
       UserId: currentUser.id,
       ChatId: chatObject.id,
     };
-    const response = await axios.post("/api/AddMesage", message);
+    try {
+      const response = await axios.post("/api/AddMesage", message);
+    } catch (error) {
+      console.error("Error fetching data:", error);
+    }
     const newChat = await axios.get("/api/Mesages/" + chatObject.id);
     setChat(newChat.data);
     setReply("");
