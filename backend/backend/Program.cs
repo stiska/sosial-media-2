@@ -77,7 +77,6 @@ app.MapPost("/api/AddFriend", async (AddFriend ids) =>
         return rowsAffected;
     }
     else return 0;
-     
 });
 
 app.MapGet("/api/FriendsList/{id}", async (Guid id) =>
@@ -99,6 +98,23 @@ app.MapGet("/api/FriendsList/{id}", async (Guid id) =>
     }
 
     return friends;
+});
+
+app.MapGet("/api/Posts", () =>
+{
+    return posts;
+});
+
+app.MapGet("/api/Comments/{id}", (Guid id) =>
+{
+    Posts targetPost = posts.SingleOrDefault(item => item.Id == id);
+    return targetPost.Comments;
+});
+
+app.MapPost("/api/AddComment", (Comment comment) =>
+{
+    var target = posts.SingleOrDefault(item => item.Id == comment.PostId);
+    target.Comments.Add(new Comment(comment.UserId, comment.PosterName, comment.Content, comment.PostId));
 });
 
 app.MapPost("/api/Chat", (ChatIdResponse chatIdResponse) =>
@@ -127,21 +143,6 @@ app.MapGet("/api/Mesages/{id}", (Guid id) =>
     return targetChat.Messages;
 });
 
-app.MapGet("/api/Posts", () =>
-{
-    return posts;
-});
 
-app.MapGet("/api/Comments/{id}", (Guid id) =>
-{
-    Posts targetPost = posts.SingleOrDefault(item => item.Id == id);
-    return targetPost.Comments;
-});
-
-app.MapPost("/api/AddComment", (Comment comment) =>
-{
-    var target = posts.SingleOrDefault(item => item.Id == comment.PostId);
-    target.Comments.Add(new Comment(comment.UserId, comment.PosterName, comment.Content, comment.PostId));   
-});
 
 app.Run();
