@@ -11,15 +11,21 @@ export default function FriendsList({ currentUser }) {
 
   useEffect(() => {
     const getFriends = async () => {
-      try {
-        const response = await axios.get("/api/FriendsList");
-        setFriends(response.data);
-      } catch (error) {
-        console.error("Error fetching data:", error);
+      if (currentUser != null) {
+        try {
+          const response = await axios.get(
+            "/api/FriendsList/" + currentUser.id
+          );
+          setFriends(response.data);
+        } catch (error) {
+          console.error("Error fetching data:", error);
+        }
+      } else {
+        return;
       }
     };
     getFriends();
-  }, []);
+  }, [currentUser]);
 
   const closeChat = () => {
     setActiveChat(false);

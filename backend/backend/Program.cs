@@ -48,18 +48,18 @@ var posts = new List<Posts>
     "Vær oppmerksom på skjermtid: Skjermene fra mobiltelefoner,"),
 };
 
-app.MapGet("/api/User", async() =>
+app.MapGet("/api/User/{id}", async (Guid id) =>
 {
     var conn = new SqlConnection(connStr);
-    const string sql = "SELECT Id, FirstName, LastName, Username FROM Users WHERE Id = '290ee2b9-3277-46cf-9320-7674b06b670d'";
-    var currentUser = await conn.QueryAsync<User>(sql);
-    return currentUser.SingleOrDefault(item => item.Id != null) ;
+    const string sql = "SELECT Id, FirstName, LastName, Username FROM Users WHERE Id = @Id";
+    var currentUser = await conn.QueryFirstOrDefaultAsync<User>(sql, new { Id = id });
+    return currentUser;
 });
 
 app.MapGet("/api/Users", async () =>
 {
     var conn = new SqlConnection(connStr);
-    const string sql = "SELECT Id, FirstName, LastName, Username FROM Users WHERE Id != '290ee2b9-3277-46cf-9320-7674b06b670d'";
+    const string sql = "SELECT Id, FirstName, LastName, Username FROM Users";
     var users = await conn.QueryAsync<User>(sql);
     return users;
 });
@@ -74,9 +74,25 @@ app.MapPost("/api/AddFriend", async (AddFriend ids) =>
     return rowsAffected;
 });
 
-app.MapGet("/api/Posts", () =>
+app.MapGet("/api/FriendsList/{id}", async (Guid id) =>
 {
-    return posts;
+    var conn = new SqlConnection(connStr);
+    const string sql = "SELECT FriendId FROM Friends WHERE UserId = @Id";
+    var friendsId = await conn.QueryAsync<Guid>(sql, new { Id = id });
+    var friends = new List<User>();
+
+    foreach (var friendId in friendsId)
+    {
+        const string sql2 = "SELECT Id, FirstName, LastName, Username FROM Users WHERE Id = @Id";
+        var user = await conn.QueryFirstOrDefaultAsync<User>(sql2, new { Id = friendId });
+
+        if (user != null)
+        {
+            friends.Add(user);
+        }
+    }
+
+    return friends;
 });
 
 app.MapPost("/api/Chat", (ChatIdResponse chatIdResponse) =>
@@ -105,9 +121,9 @@ app.MapGet("/api/Mesages/{id}", (Guid id) =>
     return targetChat.Messages;
 });
 
-app.MapGet("/api/FriendsList", () =>
+app.MapGet("/api/Posts", () =>
 {
-    return users;
+    return posts;
 });
 
 app.MapGet("/api/Comments/{id}", (Guid id) =>

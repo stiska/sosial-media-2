@@ -6,23 +6,30 @@ import PostsList from "./PostsList";
 import MenuButton from "./MenuButton";
 
 export default function MainPage() {
+  const [currentUserId, setCurrentUserId] = useState(
+    "290ee2b9-3277-46cf-9320-7674b06b670d"
+  );
   const [currentUser, setCurrentUser] = useState(null);
   const [mainContent, setMainContent] = useState("UserList");
 
   useEffect(() => {
     const getUser = async () => {
       try {
-        const response = await axios.get("/api/User");
+        const response = await axios.get("/api/User/" + currentUserId);
         setCurrentUser(response.data);
       } catch (error) {
         console.error("Error fetching data:", error);
       }
     };
     getUser();
-  }, []);
+  }, [currentUserId]);
 
   const changeContent = (state) => {
     setMainContent(state);
+  };
+
+  const changeUser = (userId) => {
+    setCurrentUserId(userId);
   };
 
   return (
@@ -37,7 +44,7 @@ export default function MainPage() {
           {mainContent == "Posts" ? (
             <PostsList currentUser={currentUser}></PostsList>
           ) : (
-            <UserList currentUser={currentUser}></UserList>
+            <UserList todo={changeUser} currentUser={currentUser}></UserList>
           )}
         </div>
         <div className="side-box">

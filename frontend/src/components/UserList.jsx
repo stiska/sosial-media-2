@@ -1,14 +1,13 @@
 import { useEffect, useState } from "react";
 import UserProfile from "./UserProfile";
 
-export default function UserList({ currentUser }) {
+export default function UserList({ todo, currentUser }) {
   const [users, setUsers] = useState(null);
 
   useEffect(() => {
     const getUsers = async () => {
       try {
         const response = await axios.get("/api/Users");
-        console.log(response.data);
         setUsers(response.data);
       } catch (error) {
         console.error("Error fetching data:", error);
@@ -24,7 +23,6 @@ export default function UserList({ currentUser }) {
     };
     try {
       const response = await axios.post("/api/AddFriend", ids);
-      console.log(response.data);
     } catch (error) {
       console.error("Error fetching data:", error);
     }
@@ -39,6 +37,7 @@ export default function UserList({ currentUser }) {
             <div className="chat-bar" key={item.id}>
               <UserProfile username={item.username}></UserProfile>
               <button onClick={() => addFriend(item.id)}>add friend</button>
+              <button onClick={() => todo(item.id)}>switch user</button>
             </div>
           ))}
         </div>
