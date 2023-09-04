@@ -6,15 +6,19 @@ export default function UserList({ todo, currentUser }) {
 
   useEffect(() => {
     const getUsers = async () => {
-      try {
-        const response = await axios.get("/api/Users");
-        setUsers(response.data);
-      } catch (error) {
-        console.error("Error fetching data:", error);
+      if (currentUser != null) {
+        try {
+          const response = await axios.get("/api/Users/" + currentUser.id);
+          setUsers(response.data);
+        } catch (error) {
+          console.error("Error fetching data:", error);
+        }
+      } else {
+        return;
       }
     };
     getUsers();
-  }, []);
+  }, [currentUser]);
 
   const addFriend = async (id) => {
     const ids = {

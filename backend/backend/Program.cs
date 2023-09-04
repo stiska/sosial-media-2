@@ -56,22 +56,28 @@ app.MapGet("/api/User/{id}", async (Guid id) =>
     return currentUser;
 });
 
-app.MapGet("/api/Users", async () =>
+app.MapGet("/api/Users/{id}", async (Guid id) =>
 {
     var conn = new SqlConnection(connStr);
-    const string sql = "SELECT Id, FirstName, LastName, Username FROM Users";
-    var users = await conn.QueryAsync<User>(sql);
+    const string sql = "SELECT Id, FirstName, LastName, Username FROM Users WHERE Id != @Id";
+    var users = await conn.QueryAsync<User>(sql, new { Id = id });
     return users;
 });
 
 app.MapPost("/api/AddFriend", async (AddFriend ids) =>
 {
+ 
     var conn = new SqlConnection(connStr);
-    const string sql = "INSERT Friends (UserId, FriendId) VALUES (@UserId, @FriendId);";
-    var rowsAffected = await conn.ExecuteAsync(sql, ids);
-    const string sql2 = "INSERT Friends (UserId, FriendId) VALUES (@FriendId, @UserId);";
-    rowsAffected += await conn.ExecuteAsync(sql2, ids);
-    return rowsAffected;
+    if (ids.FriendId != ids.UserId)
+    {
+        const string sql = "INSERT Friends (UserId, FriendId) VALUES (@UserId, @FriendId);";
+        var rowsAffected = await conn.ExecuteAsync(sql, ids);
+        const string sql2 = "INSERT Friends (UserId, FriendId) VALUES (@FriendId, @UserId);";
+        rowsAffected += await conn.ExecuteAsync(sql2, ids);
+        return rowsAffected;
+    }
+    else return 0;
+     
 });
 
 app.MapGet("/api/FriendsList/{id}", async (Guid id) =>

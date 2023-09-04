@@ -10,7 +10,7 @@ export default function MainPage() {
     "290ee2b9-3277-46cf-9320-7674b06b670d"
   );
   const [currentUser, setCurrentUser] = useState(null);
-  const [mainContent, setMainContent] = useState("UserList");
+  const [mainContent, setMainContent] = useState("Posts");
 
   useEffect(() => {
     const getUser = async () => {
