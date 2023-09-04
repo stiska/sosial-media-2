@@ -11,6 +11,7 @@ export default function MainPage() {
   );
   const [currentUser, setCurrentUser] = useState(null);
   const [mainContent, setMainContent] = useState("Posts");
+  const [hasUppdate, setHasUppdate] = useState(false);
 
   useEffect(() => {
     const getUser = async () => {
@@ -32,6 +33,10 @@ export default function MainPage() {
     setCurrentUserId(userId);
   };
 
+  const reRender = () => {
+    setHasUppdate(!hasUppdate);
+  };
+
   return (
     <div className="main-page">
       <NavBar currentUser={currentUser}></NavBar>
@@ -44,11 +49,18 @@ export default function MainPage() {
           {mainContent == "Posts" ? (
             <PostsList currentUser={currentUser}></PostsList>
           ) : (
-            <UserList todo={changeUser} currentUser={currentUser}></UserList>
+            <UserList
+              hasUppdate={reRender}
+              todo={changeUser}
+              currentUser={currentUser}
+            ></UserList>
           )}
         </div>
         <div className="side-box">
-          <FriendsList currentUser={currentUser}></FriendsList>
+          <FriendsList
+            hasUppdate={hasUppdate}
+            currentUser={currentUser}
+          ></FriendsList>
         </div>
       </div>
     </div>

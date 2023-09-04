@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import UserProfile from "./UserProfile";
 import Chat from "./Chat";
 
-export default function FriendsList({ currentUser }) {
+export default function FriendsList({ hasUppdate, currentUser }) {
   const [friends, setFriends] = useState(null);
   const [activeChat, setActiveChat] = useState(false);
   const [chatTarget, setChatTarget] = useState("");
@@ -25,7 +25,7 @@ export default function FriendsList({ currentUser }) {
       }
     };
     getFriends();
-  }, [currentUser]);
+  }, [currentUser, hasUppdate]);
 
   const closeChat = () => {
     setActiveChat(false);

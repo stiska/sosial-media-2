@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import UserProfile from "./UserProfile";
 
-export default function UserList({ todo, currentUser }) {
+export default function UserList({ hasUppdate, todo, currentUser }) {
   const [users, setUsers] = useState(null);
 
   useEffect(() => {
@@ -30,6 +30,7 @@ export default function UserList({ todo, currentUser }) {
     } catch (error) {
       console.error("Error fetching data:", error);
     }
+    hasUppdate();
   };
   return (
     <>
