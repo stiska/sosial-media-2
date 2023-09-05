@@ -38,7 +38,7 @@ export default function PostInteract({ post, currentUser }) {
               setShowReply(!showReply);
             }}
           >
-            {comments.length == 0
+            {comments == null
               ? "no comments"
               : "show " + comments.length + " comments"}
           </button>

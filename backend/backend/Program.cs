@@ -7,6 +7,7 @@ using static System.Net.Mime.MediaTypeNames;
 using static System.Runtime.InteropServices.JavaScript.JSType;
 using System.Data.SqlClient;
 using Dapper;
+using Microsoft.Extensions.Hosting;
 
 var builder = WebApplication.CreateBuilder(args);
 var app = builder.Build();
@@ -111,9 +112,19 @@ app.MapPost("/api/Addpost", async (PostResponse postResponse) =>
     return rowsAffected;
 });
 
-app.MapGet("/api/Posts", () =>
+app.MapGet("/api/Posts/{id}", async (Guid id) =>
 {
-    return posts;
+    var conn = new SqlConnection(connStr);
+    const string sql = @"
+        SELECT p.Id, p.UserId, u.Username AS PosterName, p.Content
+        FROM Posts p
+        JOIN Users u ON p.UserId = u.Id
+        WHERE p.UserId IN (SELECT FriendId FROM Friends WHERE UserId = @Id)
+    "
+    ;
+
+    var posts = await conn.QueryAsync<Posts>(sql, new { Id = id });
+    return posts.ToList();
 });
 
 app.MapGet("/api/Comments/{id}", (Guid id) =>

@@ -6,16 +6,21 @@ export default function PostsList({ currentUser }) {
   const [postsList, setPostsList] = useState(null);
 
   useEffect(() => {
-    const getPosts = async () => {
-      try {
-        const response = await axios.get("/api/Posts");
-        setPostsList(response.data);
-      } catch (error) {
-        console.error("Error fetching data:", error);
-      }
-    };
-    getPosts();
-  }, []);
+    if (currentUser != null) {
+      const getPosts = async () => {
+        try {
+          const response = await axios.get("/api/Posts/" + currentUser.id);
+          console.log(response.data);
+          setPostsList(response.data);
+        } catch (error) {
+          console.error("Error fetching data:", error);
+        }
+      };
+      getPosts();
+    } else {
+      return;
+    }
+  }, [currentUser]);
 
   return (
     <div>
