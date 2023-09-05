@@ -100,6 +100,17 @@ app.MapGet("/api/FriendsList/{id}", async (Guid id) =>
     return friends;
 });
 
+app.MapPost("/api/Addpost", async (PostResponse postResponse) =>
+{
+    var conn = new SqlConnection(connStr);
+    const string sql = "SELECT Id, FirstName, LastName, Username FROM Users WHERE Id = @Id";
+    var user = await conn.QueryFirstOrDefaultAsync<User>(sql, new { Id = postResponse.UserId });
+    var post = new Posts(user, postResponse.Content);
+    const string sql2 = "INSERT Posts (Id, UserId, [Content]) VALUES (@Id, @UserId, @Content);";
+    var rowsAffected = await conn.ExecuteAsync(sql2, post);
+    return rowsAffected;
+});
+
 app.MapGet("/api/Posts", () =>
 {
     return posts;

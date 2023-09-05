@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import NavBar from "./NavBar";
 import FriendsList from "./FriendsList";
 import UserList from "./UserList";
+import NewPost from "./NewPost";
 import PostsList from "./PostsList";
 import MenuButton from "./MenuButton";
 
@@ -42,18 +43,21 @@ export default function MainPage() {
       <NavBar currentUser={currentUser}></NavBar>
       <div className="main-container">
         <div className="side-box">
+          <MenuButton todo={changeContent} content={"New Post"}></MenuButton>
           <MenuButton todo={changeContent} content={"Posts"}></MenuButton>
           <MenuButton todo={changeContent} content={"UserList"}></MenuButton>
         </div>
         <div className="main-box">
           {mainContent == "Posts" ? (
             <PostsList currentUser={currentUser}></PostsList>
-          ) : (
+          ) : mainContent == "UserList" ? (
             <UserList
               hasUppdate={reRender}
               todo={changeUser}
               currentUser={currentUser}
             ></UserList>
+          ) : (
+            <NewPost currentUser={currentUser}></NewPost>
           )}
         </div>
         <div className="side-box">
