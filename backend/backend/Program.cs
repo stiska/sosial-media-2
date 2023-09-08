@@ -119,9 +119,7 @@ app.MapGet("/api/Posts/{id}", async (Guid id) =>
         SELECT p.Id, p.UserId, u.Username AS PosterName, p.Content
         FROM Posts p
         JOIN Users u ON p.UserId = u.Id
-        WHERE p.UserId IN (SELECT FriendId FROM Friends WHERE UserId = @Id)
-    "
-    ;
+        WHERE p.UserId IN (SELECT FriendId FROM Friends WHERE UserId = @Id)";
 
     var posts = await conn.QueryAsync<Posts>(sql, new { Id = id });
     return posts.ToList();
